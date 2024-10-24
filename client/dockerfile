@@ -1,0 +1,6 @@
+FROM nginx:alpine
+COPY ./client/pages/ /usr/share/nginx/html/
+COPY ./client/assets /usr/share/nginx/html/assets
+COPY ./client/api /usr/share/nginx/html/api
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

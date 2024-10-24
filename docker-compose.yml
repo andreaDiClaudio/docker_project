@@ -9,11 +9,20 @@ services:
     volumes:
       - mongo_db:/data/db
 
+  frontend:
+    build:
+      context: ./
+      dockerfile: ./client/dockerfile
+    ports:
+      - 80:80 
+    depends_on:
+      - api
+
   # Node API
   api:
     build: ./server/
     ports:
-      - 4000:3000
+      - 8080:3000
     environment:
       PORT: 3000
       MONGODB_URI: mongodb://mongo_db:27017/travel_destination
