@@ -7,6 +7,7 @@ This project contains a monorepo with a backend (Node.js with Express) and front
 Make sure you have the following installed:
 - Docker
 - Docker Compose
+- Docker daemon must be running on your machine.
 
 ## Docker Compose
 
