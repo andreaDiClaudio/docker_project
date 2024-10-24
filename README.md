@@ -1,95 +1,49 @@
 
-# Frontend Application with Docker and Nginx
+# Travel Destination with Docker
 
-This project demonstrates how to containerize a frontend application (using HTML, CSS, and JavaScript) with Nginx, using Docker and Docker-Compose. The Nginx web server will serve the static frontend files.
+This project contains a monorepo with a backend (Node.js with Express) and frontend (plain JavaScript, HTML, CSS), along with a MongoDB database. 
 
 ## Prerequisites
+Make sure you have the following installed:
+- Docker
+- Docker Compose
 
-Make sure you have the following installed on your machine:
-- [Docker](https://docs.docker.com/get-docker/)
-- [Docker-Compose](https://docs.docker.com/compose/install/)
+## Docker Compose
 
-## Folder Structure
+The `docker-compose.yml` file sets up three services: 
+1. **MongoDB** (for the database),
+2. **Frontend** (served with Nginx),
+3. **Backend** (Node.js with Express connected to MongoDB).
 
-```
-project-root/
-│
-├── client/
-│   ├── api/               # API directory
-│   ├── assets/            # Assets (images, styles, etc.)
-│   ├── pages/             # Contains HTML files, including index.html
-│   └── dockerfile         # Dockerfile for the frontend application
-│
-└── docker-compose.yml     # Docker-Compose configuration file
-```
+## Running the Project
 
-## Steps to Containerize the Application
+To run the app using Docker Compose:
 
-### 1. Dockerfile Setup
-
-Create a `dockerfile` inside the `client/` folder to define how the frontend application will be built and served by Nginx.
-
-**Dockerfile (client/dockerfile):**
-
-```dockerfile
-FROM nginx:alpine
-
-COPY ./pages /usr/share/nginx/html
-
-EXPOSE 80
-```
-
-### 2. Docker-Compose Setup
-
-In the root directory of your project, create the `docker-compose.yml` file to define the services (frontend and backend). Below is the setup for the frontend application.
-
-**docker-compose.yml:**
-
-```yaml
-version: "3.8"
-
-services:
-  # Frontend Service
-  frontend:
-    build:
-      context: ./client
-      dockerfile: ./client/dockerfile
-    ports:
-      - "80:80"
-    volumes:
-      - ./client/pages:/usr/share/nginx/html
-```
-
-### 3. Build and Run the Application
-
-After setting up the Dockerfile and Docker-Compose file, you can follow these steps to build and run the application.
-
-1. **Build the containers**
-
-   Open a terminal in the project root and run:
+1. Open a terminal and navigate to the project root directory.
+2. Build and start the services using the following command:
 
    ```bash
-   docker-compose up --build
+   docker compose up --build
    ```
 
-   This command builds the Docker images and starts the containers.
+   This command will:
+   - Pull the MongoDB image,
+   - Build the frontend with Nginx,
+   - Build the backend with Node.js and Express.
 
-2. **Access the application**
+3. Open your browser and go to `http://localhost` to see the frontend.
+   The backend API will be accessible at `http://localhost:8080`.
 
-   Once the containers are running, open your browser and navigate to `http://localhost` to view the frontend application.
-
-### 4. Hot Reload (Optional)
-
-If you're actively working on the frontend and want changes to reflect immediately without rebuilding the container, use Docker's volume mapping feature. The `volumes` configuration in the `docker-compose.yml` file ensures that changes to the `client/pages` directory on your host machine will be reflected inside the container without rebuilding.
-
----
-
-## Stopping the Containers
-
-To stop and remove the containers, run the following command:
+### Stopping the Project
+To stop and remove the running containers:
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
-This stops the containers and removes them, along with any associated networks and volumes.
+## Notes
+
+- The MongoDB container will persist the data in a volume named `mongo_db`.
+- Ensure that the `client/pages` folder contains the `index.html` file to serve the frontend correctly.
+- Adjust the port mapping in the `docker-compose.yml` file if you have conflicting services.
+
