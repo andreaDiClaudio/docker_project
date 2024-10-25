@@ -10,8 +10,7 @@ Make sure you have the following installed:
 - Docker daemon must be running on your machine
 
 ## How to setup server repo
-3. Create a `.env` file and set the `PORT=` to the desired port.
-4. Run `node app.js`.
+1. Create a `.env` file and set the `PORT=` to the desired port.
 
 ### How to connect to db
 1. Set the `MONGODB_URI` to your mongodb_uri in the `.env` file
