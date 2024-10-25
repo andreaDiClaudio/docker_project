@@ -7,7 +7,8 @@ This project contains a monorepo with a backend (Node.js with Express) and front
 Make sure you have the following installed:
 - Docker
 - Docker Compose
-- Docker daemon must be running on your machine.
+- Docker daemon must be running on your machine
+- A MongoDB instance should be up and running locally
 
 ## Docker Compose
 
@@ -15,6 +16,12 @@ The `docker-compose.yml` file sets up three services:
 1. **MongoDB** (for the database),
 2. **Frontend** (served with Nginx),
 3. **Backend** (Node.js with Express connected to MongoDB).
+
+## How to connect to db
+1. Create new connection in mongodb compass.
+2. Set the `MONGODB_URI` to your mongodb_uri in the `.env` file
+3. Run `node app.js`.
+
 
 ## Running the Project
 

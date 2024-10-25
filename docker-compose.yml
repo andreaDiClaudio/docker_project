@@ -1,7 +1,6 @@
 version: "3.8"
 
 services:
-  # MongoDB
   mongo_db:
     container_name: db_container
     image: mongo:latest
@@ -18,7 +17,6 @@ services:
     depends_on:
       - api
 
-  # Node API
   api:
     build: ./server/
     ports:
