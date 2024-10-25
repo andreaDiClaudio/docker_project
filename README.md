@@ -8,16 +8,14 @@ Make sure you have the following installed:
 - Docker
 - Docker Compose
 - Docker daemon must be running on your machine
-- A MongoDB instance should be up and running locally
 
 ## How to setup server repo
 3. Create a `.env` file and set the `PORT=` to the desired port.
 4. Run `node app.js`.
 
 ### How to connect to db
-1. Create new connection in mongodb compass.
-2. Set the `MONGODB_URI` to your mongodb_uri in the `.env` file
-3. Run `node app.js`.
+1. Set the `MONGODB_URI` to your mongodb_uri in the `.env` file
+2. Make sure that the `MONGODB_URI` is the same in the `docker-compose.yml`
 
 ### Auth
 1. Set the `JWT_SECRET` to your secret in the `.env` file
